@@ -1,0 +1,146 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="csrf-token" content="9nqW47qR9Ffhq269BlZxr_4aDJ56ykIYkFT4DetgP10">
+  <title>Domains · Sentinel DNS</title>
+  <link rel="icon" type="image/svg+xml" href="static/img/logo.svg?v=1794582754">
+  
+<link rel="preload" href="static/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="static/css/base.css?v=1794582754">
+<link rel="stylesheet" href="static/css/components.css?v=1794582754">
+<link rel="stylesheet" href="static/css/pages.css?v=1794582754">
+<link rel="stylesheet" href="static/css/animations.css?v=1794582754">
+</head>
+<body data-page="domains">
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="static/img/logo.svg?v=1794582754" alt="" width="34" height="34">
+      <span class="brand-name">SENTINEL</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-label">CONTROL PANEL</div>
+      
+      <a class="nav-item" href="index.html" title="Dashboard"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chart-column"></use></svg><span class="nav-text">DASHBOARD</span>
+      </a>
+      
+      <a class="nav-item" href="policies.html" title="Policies"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#shield"></use></svg><span class="nav-text">POLICIES</span>
+      </a>
+      
+      <a class="nav-item" href="analytics.html" title="Analytics"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#activity"></use></svg><span class="nav-text">ANALYTICS</span>
+      </a>
+      
+      <a class="nav-item" href="threats.html" title="Threats"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#triangle-alert"></use></svg><span class="nav-text">THREATS</span>
+      </a>
+      
+      <a class="nav-item is-active" href="domains.html" title="Domains"
+         aria-current="page">
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#globe"></use></svg><span class="nav-text">DOMAINS</span>
+      </a>
+      
+      <a class="nav-item" href="query.html" title="Query Tester"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#scan-search"></use></svg><span class="nav-text">QUERY TESTER</span>
+      </a>
+      
+      <a class="nav-item" href="users.html" title="Users"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#users"></use></svg><span class="nav-text">USERS</span>
+      </a>
+      
+      <a class="nav-item" href="settings.html" title="Settings"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#settings"></use></svg><span class="nav-text">SETTINGS</span>
+      </a>
+      
+      <a class="nav-item" href="help.html" title="Help"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#circle-help"></use></svg><span class="nav-text">HELP</span>
+      </a>
+      
+    </nav>
+    <div class="sidebar-foot"><span class="nav-text">BIND • ML • FEEDS</span></div>
+  </aside>
+  <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-controls="sidebar">
+        <svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#panel-left-close"></use></svg>
+      </button>
+      <h1 class="page-title">DOMAIN RECORDS</h1>
+      <div class="topbar-right">
+        <span class="status-pill" id="status-pill"><span class="dot dot-blue pulse"></span><span id="status-text">ACTIVE</span></span>
+        <span class="clock" id="clock" aria-label="Server time">--:--:--</span>
+        <span class="user-chip" title="Signed in as admin">
+          <svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#user"></use></svg><span class="user-name">ADMIN</span>
+          <span class="role-tag role-admin">ADMIN</span>
+        </span>
+        <form method="get" action="login.html" class="logout-form">
+          <input type="hidden" name="csrf_token" value="9nqW47qR9Ffhq269BlZxr_4aDJ56ykIYkFT4DetgP10">
+          <button class="icon-btn" type="submit" aria-label="Sign out" title="Sign out"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#log-out"></use></svg></button>
+        </form>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      
+<section class="zone-grid" id="zone-grid"><div class="card zone-card"><span class="skeleton skeleton-line"></span><span class="skeleton skeleton-line short"></span></div><div class="card zone-card"><span class="skeleton skeleton-line"></span><span class="skeleton skeleton-line short"></span></div></section>
+
+<section class="panel section reveal" style="--i:2">
+  <header class="panel-head">
+  <h2 class="panel-title"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#globe"></use></svg><span>Resource Records</span></h2>
+  
+  <div class="panel-actions">
+    <button class="btn" id="zonefile-btn" type="button"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#file-text"></use></svg><span>Zone File</span></button>
+    <button class="btn btn-primary" id="add-record-btn" type="button" data-admin><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#plus"></use></svg><span>Add Record</span></button>
+  </div>
+  
+</header>
+  <div class="filter-bar">
+    <label class="input-icon filter-search"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#search"></use></svg>
+      <input class="input" id="record-search" placeholder="Filter by name or value…" autocomplete="off" data-search aria-label="Filter records">
+    </label>
+    <div class="chips" id="type-chips" role="group" aria-label="Record type filter"></div>
+  </div>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>Name</th><th>Type</th><th>Value</th><th>TTL</th><th>Updated</th><th class="actions"></th></tr></thead>
+      <tbody id="records-body"><tr><td colspan="6" class="empty">Loading records…</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+    </main>
+
+    <footer class="footer">
+      <span class="footer-left">
+        <span class="footer-name">SENTINEL DNS FIREWALL - NETWORK PROTECTION SYSTEM</span>
+        <span class="mode-tag" title="Traffic is simulated because BIND is not attached">DEMO DATA</span>
+        
+      </span>
+      <span class="footer-right">LAST UPDATE: <span id="last-update">—</span></span>
+    </footer>
+  </div>
+</div>
+
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<div class="modal-root" id="modal-root" hidden></div>
+<script type="application/json" id="app-context">{"demo": true, "icons": "static/img/icons.svg?v=1794582754", "must_change": false, "page": "domains", "role": "admin", "user": "admin"}</script>
+
+<script type="module" src="static/js/pages/domains.js?v=1794582754"></script>
+<script src="static/js/demo-data.js"></script><div style="position:fixed;bottom:12px;right:12px;z-index:9999;padding:6px 12px;border-radius:8px;background:#f59e0b;color:#111;font:600 12px system-ui">Static UI demo · sample data</div></body>
+</html>

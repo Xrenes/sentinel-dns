@@ -1,0 +1,246 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="csrf-token" content="9nqW47qR9Ffhq269BlZxr_4aDJ56ykIYkFT4DetgP10">
+  <title>Help · Sentinel DNS</title>
+  <link rel="icon" type="image/svg+xml" href="static/img/logo.svg?v=1794582754">
+  
+<link rel="preload" href="static/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="static/css/base.css?v=1794582754">
+<link rel="stylesheet" href="static/css/components.css?v=1794582754">
+<link rel="stylesheet" href="static/css/pages.css?v=1794582754">
+<link rel="stylesheet" href="static/css/animations.css?v=1794582754">
+</head>
+<body data-page="help">
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="static/img/logo.svg?v=1794582754" alt="" width="34" height="34">
+      <span class="brand-name">SENTINEL</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-label">CONTROL PANEL</div>
+      
+      <a class="nav-item" href="index.html" title="Dashboard"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chart-column"></use></svg><span class="nav-text">DASHBOARD</span>
+      </a>
+      
+      <a class="nav-item" href="policies.html" title="Policies"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#shield"></use></svg><span class="nav-text">POLICIES</span>
+      </a>
+      
+      <a class="nav-item" href="analytics.html" title="Analytics"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#activity"></use></svg><span class="nav-text">ANALYTICS</span>
+      </a>
+      
+      <a class="nav-item" href="threats.html" title="Threats"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#triangle-alert"></use></svg><span class="nav-text">THREATS</span>
+      </a>
+      
+      <a class="nav-item" href="domains.html" title="Domains"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#globe"></use></svg><span class="nav-text">DOMAINS</span>
+      </a>
+      
+      <a class="nav-item" href="query.html" title="Query Tester"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#scan-search"></use></svg><span class="nav-text">QUERY TESTER</span>
+      </a>
+      
+      <a class="nav-item" href="users.html" title="Users"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#users"></use></svg><span class="nav-text">USERS</span>
+      </a>
+      
+      <a class="nav-item" href="settings.html" title="Settings"
+         >
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#settings"></use></svg><span class="nav-text">SETTINGS</span>
+      </a>
+      
+      <a class="nav-item is-active" href="help.html" title="Help"
+         aria-current="page">
+        <svg class="icon nav-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#circle-help"></use></svg><span class="nav-text">HELP</span>
+      </a>
+      
+    </nav>
+    <div class="sidebar-foot"><span class="nav-text">BIND • ML • FEEDS</span></div>
+  </aside>
+  <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="sidebar-toggle" type="button" aria-label="Toggle sidebar" aria-controls="sidebar">
+        <svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#panel-left-close"></use></svg>
+      </button>
+      <h1 class="page-title">HELP &amp; DOCUMENTATION</h1>
+      <div class="topbar-right">
+        <span class="status-pill" id="status-pill"><span class="dot dot-blue pulse"></span><span id="status-text">ACTIVE</span></span>
+        <span class="clock" id="clock" aria-label="Server time">--:--:--</span>
+        <span class="user-chip" title="Signed in as admin">
+          <svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#user"></use></svg><span class="user-name">ADMIN</span>
+          <span class="role-tag role-admin">ADMIN</span>
+        </span>
+        <form method="get" action="login.html" class="logout-form">
+          <input type="hidden" name="csrf_token" value="9nqW47qR9Ffhq269BlZxr_4aDJ56ykIYkFT4DetgP10">
+          <button class="icon-btn" type="submit" aria-label="Sign out" title="Sign out"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#log-out"></use></svg></button>
+        </form>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      
+<section class="guide-grid">
+  <article class="card guide-card reveal" style="--i:0">
+    <span class="guide-step">01</span>
+    <svg class="icon guide-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#router"></use></svg>
+    <h2>Point clients at the server</h2>
+    <p>Set the DNS server of each lab machine (or the DHCP option) to this server's IP, e.g. <code>192.168.56.10</code>.</p>
+  </article>
+  <article class="card guide-card reveal" style="--i:1">
+    <span class="guide-step">02</span>
+    <svg class="icon guide-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#globe"></use></svg>
+    <h2>Manage your zone</h2>
+    <p>Add A, AAAA, CNAME, MX and TXT records on <a href="domains.html">Domains</a>. Every change bumps the SOA serial.</p>
+  </article>
+  <article class="card guide-card reveal" style="--i:2">
+    <span class="guide-step">03</span>
+    <svg class="icon guide-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#shield"></use></svg>
+    <h2>Tune protection</h2>
+    <p>Enable blocklist categories, add allow/block rules and set the ML threshold on <a href="policies.html">Policies</a>.</p>
+  </article>
+  <article class="card guide-card reveal" style="--i:3">
+    <span class="guide-step">04</span>
+    <svg class="icon guide-icon" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#scan-search"></use></svg>
+    <h2>Verify answers</h2>
+    <p>Use the <a href="query.html">Query Tester</a> to see local answers, policy blocks, DNSSEC flags and ML risk.</p>
+  </article>
+</section>
+
+<section class="split section">
+  <article class="panel reveal" style="--i:4">
+    <header class="panel-head">
+  <h2 class="panel-title"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#circle-help"></use></svg><span>Frequently Asked Questions</span></h2>
+  
+</header>
+    <div class="panel-body accordion" id="faq">
+      
+      
+      <div class="accordion-item is-open">
+        <button class="accordion-trigger" type="button" aria-expanded="true">
+          <span>Why was a website blocked?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">Open Threats, search for the domain and check the Category and Source columns. Threat Intel means a public blocklist, Policy Rule means an administrator rule and ML Detector means the name looked machine-generated. Use Unblock to add an allow rule.</p></div></div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button" aria-expanded="false">
+          <span>What does DEMO DATA mean?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">BIND is not attached (for example when running on Windows), so Sentinel simulates realistic lab traffic. With SENTINEL_MODE=bind on the DNS server, Sentinel manages a real BIND 9: every change is checked with named-checkzone / named-checkconf, written to BIND&#39;s files and applied with rndc, and the dashboard shows what BIND actually answered.</p></div></div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button" aria-expanded="false">
+          <span>How does the ML detector work?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">The heuristic-v0 model scores names using entropy, label length, digit ratio, vowel ratio, consonant runs, suspicious keywords and high-risk TLDs. Domains above the threshold are blocked when auto-block is on.</p></div></div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button" aria-expanded="false">
+          <span>What is DNSSEC and why re-sign?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">DNSSEC adds signatures (RRSIG) to your records so resolvers can prove answers were not forged. Signatures expire, so the zone must be re-signed regularly; BIND does this automatically with dnssec-policy.</p></div></div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button" aria-expanded="false">
+          <span>Why can only some networks use the server?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">An open resolver can be abused for amplification attacks. The ACL limits recursion to your lab networks and Response Rate Limiting caps answers per client. Both are set on the Settings page; Sentinel writes them into BIND&#39;s configuration and applies them with rndc reconfig.</p></div></div>
+      </div>
+      
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button" aria-expanded="false">
+          <span>Is query logging private?</span><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#chevron-down"></use></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-inner"><p class="accordion-content">Logs are only visible to signed-in users, are deleted after the retention period and client IPs can be anonymized in Settings.</p></div></div>
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="panel reveal" style="--i:5">
+    <header class="panel-head">
+  <h2 class="panel-title"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#keyboard"></use></svg><span>Keyboard Shortcuts</span></h2>
+  
+</header>
+    <div class="panel-body">
+      <ul class="shortcut-list">
+        <li><kbd>[</kbd><span>Collapse / expand sidebar</span></li>
+        <li><kbd>/</kbd><span>Focus the search box on this page</span></li>
+        <li><kbd>Esc</kbd><span>Close dialogs</span></li>
+      </ul>
+      <div class="field-label section-sm">Record types</div>
+      <ul class="shortcut-list">
+        <li><span class="rtype rtype-A">A</span><span>Name → IPv4 address</span></li>
+        <li><span class="rtype rtype-AAAA">AAAA</span><span>Name → IPv6 address</span></li>
+        <li><span class="rtype rtype-CNAME">CNAME</span><span>Alias to another name</span></li>
+        <li><span class="rtype rtype-MX">MX</span><span>Mail server for the domain</span></li>
+        <li><span class="rtype rtype-TXT">TXT</span><span>Text, e.g. SPF / DMARC</span></li>
+        <li><span class="rtype rtype-PTR">PTR</span><span>IP address → name (reverse)</span></li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+<section class="panel section reveal" style="--i:6">
+  <header class="panel-head">
+  <h2 class="panel-title"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#terminal"></use></svg><span>Terminal Tool (dnsctl)</span></h2>
+  
+</header>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>Command</th><th>Does the same as</th></tr></thead>
+      <tbody>
+        <tr><td><code>dnsctl status</code></td><td>Dashboard → System Status</td></tr>
+        <tr><td><code>dnsctl record add A www 192.168.56.20</code></td><td>Domains → Add Record</td></tr>
+        <tr><td><code>dnsctl block add bad.example.com</code></td><td>Policies → Custom Rules</td></tr>
+        <tr><td><code>dnsctl test www.lab.local --type A</code></td><td>Query Tester</td></tr>
+        <tr><td><code>dnsctl stats</code></td><td>Dashboard stat cards (<code>--range 24h|7d</code> for totals)</td></tr>
+        <tr><td><code>dnsctl logs --blocked --follow</code></td><td>Threats → live log</td></tr>
+        <tr><td><code>dnsctl dnssec sign</code></td><td>Settings → Re-sign Zone</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    </main>
+
+    <footer class="footer">
+      <span class="footer-left">
+        <span class="footer-name">SENTINEL DNS FIREWALL - NETWORK PROTECTION SYSTEM</span>
+        <span class="mode-tag" title="Traffic is simulated because BIND is not attached">DEMO DATA</span>
+        
+      </span>
+      <span class="footer-right">LAST UPDATE: <span id="last-update">—</span></span>
+    </footer>
+  </div>
+</div>
+
+<div class="toast-stack" id="toasts" aria-live="polite"></div>
+<div class="modal-root" id="modal-root" hidden></div>
+<script type="application/json" id="app-context">{"demo": true, "icons": "static/img/icons.svg?v=1794582754", "must_change": false, "page": "help", "role": "admin", "user": "admin"}</script>
+
+<script type="module" src="static/js/pages/help.js?v=1794582754"></script>
+<script src="static/js/demo-data.js"></script><div style="position:fixed;bottom:12px;right:12px;z-index:9999;padding:6px 12px;border-radius:8px;background:#f59e0b;color:#111;font:600 12px system-ui">Static UI demo · sample data</div></body>
+</html>

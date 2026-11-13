@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Sign in · Sentinel DNS</title>
+  <link rel="icon" type="image/svg+xml" href="static/img/logo.svg?v=1794582754">
+  
+<link rel="preload" href="static/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="static/css/base.css?v=1794582754">
+<link rel="stylesheet" href="static/css/components.css?v=1794582754">
+<link rel="stylesheet" href="static/css/pages.css?v=1794582754">
+<link rel="stylesheet" href="static/css/animations.css?v=1794582754">
+</head>
+<body class="login-page">
+  <div class="login-grid" aria-hidden="true"></div>
+  <div class="login-scan" aria-hidden="true"></div>
+  <main class="login-card">
+    <div class="login-brand">
+      <img class="login-logo" src="static/img/logo.svg?v=1794582754" alt="" width="56" height="56">
+      <h1 class="login-title">SENTINEL</h1>
+      <p class="login-sub">DNS FIREWALL · SECURE ACCESS</p>
+    </div>
+    
+    <form class="login-form" method="get" action="index.html" novalidate>
+      <input type="hidden" name="csrf_token" value="tOABQ6h1U7ejX9U4I3weSQDTkqbzaHfGfX4lKdxG1iU">
+      <label class="field">
+        <span class="field-label">Username</span>
+        <span class="input-icon"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#user"></use></svg>
+          <input class="input" name="username" autocomplete="username" required autofocus maxlength="64" value="">
+        </span>
+      </label>
+      <label class="field">
+        <span class="field-label">Password</span>
+        <span class="input-icon"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#lock"></use></svg>
+          <input class="input" id="password" type="password" name="password" autocomplete="current-password" required maxlength="128">
+          <button class="input-action" type="button" id="toggle-password" aria-label="Show password" aria-pressed="false"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#eye"></use></svg></button>
+        </span>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit"><svg class="icon " aria-hidden="true" focusable="false"><use href="static/img/icons.svg?v=1794582754#shield-check"></use></svg><span>Authenticate</span></button>
+    </form>
+    <p class="login-foot">AUTHORIZED PERSONNEL ONLY · ALL ACCESS IS LOGGED</p>
+  </main>
+  <script type="module" src="static/js/pages/login.js?v=1794582754"></script>
+<script src="static/js/demo-data.js"></script><div style="position:fixed;bottom:12px;right:12px;z-index:9999;padding:6px 12px;border-radius:8px;background:#f59e0b;color:#111;font:600 12px system-ui">Static UI demo · sample data</div></body>
+</html>
