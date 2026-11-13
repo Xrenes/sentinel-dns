@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sentinel DNS – Project Proposal</title>
+<style>
+  @page {
+    size: A4; margin: 16mm 16mm 18mm;
+    @bottom-left { content: "CSE 324 · Sentinel DNS · Project Proposal · Team $#"; font: 8pt "Segoe UI", Arial, sans-serif; border-top: 1px solid #000; vertical-align: top; padding-top: 3px; }
+    @bottom-right { content: counter(page); font: 8pt "Segoe UI", Arial, sans-serif; border-top: 1px solid #000; vertical-align: top; padding-top: 3px; }
+  }
+  @page :first { @bottom-left { content: none; border: 0; } @bottom-right { content: none; border: 0; } }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #000; background: #fff; font-size: 10pt; line-height: 1.4; margin: 0; }
+  h1, h2, h3 { margin: 0; }
+  .brk { break-before: page; }
+  .num { display: inline-block; min-width: 26px; height: 26px; border: 2px solid #000; text-align: center; line-height: 22px; font-weight: 700; margin-right: 8px; padding: 0 3px; }
+  thead { display: table-header-group; }
+  h3 + table, p + table { break-before: avoid; }
+  h2 { font-size: 15pt; border-bottom: 2px solid #000; padding-bottom: 5px; margin: 14px 0 8px; display: flex; align-items: center; break-after: avoid; }
+  .brk > h2:first-child, h2.first { margin-top: 0; }
+  h3 { font-size: 11pt; margin: 10px 0 4px; break-after: avoid; }
+  p { margin: 4px 0 6px; }
+  ul, ol { margin: 3px 0 7px; padding-left: 18px; }
+  li { margin: 2px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 5px 0 9px; }
+  tr { break-inside: avoid; }
+  th, td { border: 1px solid #000; padding: 3px 6px; text-align: left; vertical-align: top; font-size: 9pt; }
+  th { background: #e6e6e6; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 8.8pt; }
+  .muted { color: #444; }
+  .box { border: 1px solid #000; padding: 7px 10px; margin: 6px 0; break-inside: avoid; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .keep { break-inside: avoid; }
+  .gantt td { text-align: center; padding: 3px 2px; }
+  .gantt td.task { text-align: left; padding: 3px 6px; }
+  .gantt td.on { background: #000; }
+  .gantt td.mk { background: #fff; font-weight: 700; }
+  .cover { text-align: center; display: flex; flex-direction: column; justify-content: space-between; height: 258mm; border: 3px double #000; padding: 16mm 16mm 18mm; }
+  .cover .uni { font-size: 15pt; font-weight: 700; letter-spacing: .5px; }
+  .cover .dept { font-size: 11pt; margin-top: 4px; }
+  .cover .kind { margin-top: 14mm; font-size: 11pt; letter-spacing: 4px; text-transform: uppercase; }
+  .cover .title { font-size: 30pt; font-weight: 800; margin-top: 6px; }
+  .cover .sub { font-size: 13pt; margin-top: 6px; }
+  .cover table { width: 84%; margin: 0 auto; }
+  .cover td, .cover th { font-size: 10.5pt; padding: 6px 8px; }
+  .cover .meta { width: 84%; margin: 0 auto 10px; text-align: left; font-size: 10.5pt; }
+  .cover .meta div { display: flex; border-bottom: 1px dotted #000; padding: 4px 0; }
+  .cover .meta b { width: 42%; }
+  svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="cover">
+  <div>
+    <img src="diu-logo.svg" alt="DIU logo" style="height:32mm;display:block;margin:0 auto 6mm">
+    <div class="uni">Daffodil International University</div>
+    <div class="dept">Department of Computer Science and Engineering</div>
+    <div class="dept">CSE 324 — Operating Systems Lab</div>
+    <div class="kind">Project Proposal</div>
+    <div class="title">Sentinel DNS</div>
+    <div class="sub">A Secure DNS Server with DNSSEC, a DNS Firewall<br>and a Web Management Dashboard</div>
+  </div>
+  <div>
+    <div class="meta">
+      <div><b>Team name</b><span>$#</span></div>
+      <div><b>Section / Lab group</b><span>66_B1</span></div>
+      <div><b>Submitted to</b><span>Rumman Adib, Lecturer (Contractual)</span></div>
+      <div><b>Proposal presentation</b><span>12 November 2026</span></div>
+    </div>
+    <table>
+      <thead><tr><th style="width:8%">#</th><th>Member name</th><th style="width:26%">Student ID</th><th style="width:16%">Section</th></tr></thead>
+      <tr><td>1</td><td>Sayed Ifti Ahmed (Team lead)</td><td>241-15-227</td><td>66_B1</td></tr>
+      <tr><td>2</td><td>All Mackrajul</td><td>241-15-691</td><td>66_B1</td></tr>
+      <tr><td>3</td><td>MD. KAIKOBAD</td><td>232-15-654</td><td>66_B1</td></tr>
+      <tr><td>4</td><td>Rituparna Banik</td><td>241-15-726</td><td>66_B1</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section class="brk">
+  <h2>Contents</h2>
+  <table>
+    <thead><tr><th style="width:8%">#</th><th>Section</th><th style="width:44%">What it answers</th></tr></thead>
+    <tr><td>1</td><td>Problem Statement &amp; Objective</td><td>What real-world problem we solve and why it matters</td></tr>
+    <tr><td>2</td><td>Project Scope</td><td>What we will build — and what we will not</td></tr>
+    <tr><td>3</td><td>OS Concepts Involved</td><td>Which OS concepts we use, and where</td></tr>
+    <tr><td>4</td><td>Proposed System Design</td><td>Architecture, components and how they interact</td></tr>
+    <tr><td>5</td><td>Tools &amp; Technologies</td><td>What we use and why we picked it</td></tr>
+    <tr><td>6</td><td>Implementation Plan</td><td>Setup → configuration → automation → testing</td></tr>
+    <tr><td>7</td><td>Work Distribution</td><td>Who does what, and what each member delivers</td></tr>
+    <tr><td>8</td><td>Timeline</td><td>Week-by-week milestones to the final submission</td></tr>
+    <tr><td>9</td><td>Expected Challenges &amp; Trade-offs</td><td>Conflicting constraints and how we handle them</td></tr>
+    <tr><td>10</td><td>Expected Outcome &amp; Demo Plan</td><td>What will be seen working in the final demo</td></tr>
+    <tr><td>11</td><td>References</td><td>Documentation, standards, books</td></tr>
+  </table>
+
+  <h3>Project at a glance</h3>
+  <div class="box">
+    <p style="margin-top:0"><b>Sentinel DNS</b> is a DNS server for a lab network, built on <b>BIND 9</b> inside an <b>Ubuntu 24.04</b> virtual machine. It answers names for the lab's own zone (<code>lab.local</code>), resolves Internet names for lab clients, signs its zone with <b>DNSSEC</b>, and blocks malware, phishing and tracking domains with a <b>DNS firewall</b> (Response Policy Zone) fed by real public threat lists.</p>
+    <p style="margin-bottom:0">Administrators manage everything through an <b>HTTPS web dashboard</b> or a <b>command-line tool (<code>dnsctl</code>)</b>; every change is validated, checked by BIND's own tools and applied without restarting the server. Installation and testing are automated with shell scripts.</p>
+  </div>
+  <div class="two">
+    <div class="box"><b>Team:</b> $# · 66_B1 · 4 members<br><b>Duration:</b> 7 weeks (5 Nov – 23 Dec 2026)<br><b>Platform:</b> VirtualBox VM, Ubuntu 24.04, BIND 9.18</div>
+    <div class="box"><b>Key results expected:</b> all record types resolve, signed zone validates, listed threats blocked, outsiders refused, changes applied in seconds.</div>
+  </div>
+
+<!-- ================= 1 ================= -->
+  <h2><span class="num">1</span>Problem Statement &amp; Objective</h2>
+  <h3>Background</h3>
+  <p>The Domain Name System (DNS) turns names such as <code>www.example.com</code> into IP addresses. Almost every network connection — web, e-mail, software updates — starts with a DNS lookup, so the DNS server a computer uses decides <i>where</i> that computer connects.</p>
+  <h3>The problem</h3>
+  <ul>
+    <li><b>No control:</b> small labs and campuses usually rely on the ISP's or the router's default resolver. The network admin cannot see, filter or fix anything.</li>
+    <li><b>Spoofing and cache poisoning:</b> plain DNS answers are not authenticated. A forged answer can silently send a user to a fake bank or login page.</li>
+    <li><b>Malware and phishing:</b> malicious and tracking domains resolve freely. DNS is the cheapest place to stop them — before any connection is made — but nobody filters it.</li>
+    <li><b>No local names:</b> lab servers, printers and VMs have no names; users memorise and mistype IP addresses.</li>
+    <li><b>Error-prone administration:</b> managing BIND means editing zone files by hand. One typo or a forgotten serial number takes the zone down, and there is no record of who changed what.</li>
+    <li><b>Open resolvers:</b> a badly configured server answers anyone on the Internet and can be abused for DDoS amplification attacks.</li>
+  </ul>
+  <h3>Why it matters</h3>
+  <ul>
+    <li>DNS is a single point of failure <i>and</i> a single point of protection for the whole network.</li>
+    <li><b>Social impact:</b> protects students and staff from phishing and malware; gives accountability (audit trail of admin actions) while respecting privacy (limited log retention, client-IP anonymisation, logs visible only to admins).</li>
+    <li>It is a realistic Linux system-administration task that exercises core OS topics: files and permissions, processes and services, scheduling, networking and security.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Objectives and success criteria</h3>
+  <table>
+    <thead><tr><th style="width:5%">#</th><th style="width:46%">Objective</th><th>How we will know it is achieved</th></tr></thead>
+    <tr><td>O1</td><td>Deploy an <b>authoritative + recursive BIND 9</b> server for <code>lab.local</code> and its reverse zone</td><td>A, AAAA, CNAME, MX, TXT, NS and PTR records answer correctly from a lab client</td></tr>
+    <tr><td>O2</td><td>Secure the zone with <b>DNSSEC</b> and validate external answers</td><td>RRSIG records returned; DS record available; <code>ad</code> flag on validated names; SERVFAIL for a deliberately broken domain</td></tr>
+    <tr><td>O3</td><td>Build a <b>DNS firewall</b> using Response Policy Zones and real threat feeds</td><td>A listed phishing/malware domain is blocked (NXDOMAIN) and logged; an allowed domain still resolves</td></tr>
+    <tr><td>O4</td><td>Protect the server itself</td><td>Queries from outside the lab ACL are REFUSED; response rate limiting active; dashboard reachable only over HTTPS</td></tr>
+    <tr><td>O5</td><td>Provide safe management through a <b>web dashboard</b> and <b><code>dnsctl</code></b></td><td>A record added in the dashboard resolves within seconds; an invalid change is rejected and the old zone keeps working</td></tr>
+    <tr><td>O6</td><td><b>Automate</b> installation and testing with shell scripts</td><td>One command installs the whole system on a fresh VM; one command runs the test plan and writes a results file</td></tr>
+    <tr><td>O7</td><td><b>Measure</b> performance</td><td>Cached vs. uncached latency, cache hit rate and queries per second (dnsperf) recorded</td></tr>
+  </table>
+
+<!-- ================= 2 ================= -->
+  <h2><span class="num">2</span>Project Scope</h2>
+  <div class="two">
+    <div class="box">
+      <h3 style="margin-top:0">In scope — we WILL build</h3>
+      <ul>
+        <li>Ubuntu 24.04 server VM in VirtualBox with a static IP on a host-only lab network</li>
+        <li>BIND 9: forward zone <code>lab.local</code>, reverse zone <code>56.168.192.in-addr.arpa</code>, caching, forwarders</li>
+        <li>Record types A, AAAA, CNAME, MX, TXT, NS, PTR</li>
+        <li>DNSSEC: KSK/ZSK keys, automatic signing, DS record, validation of external answers</li>
+        <li>Recursion restricted to the lab ACL; response rate limiting</li>
+        <li>DNS firewall (RPZ): threat feeds for malware, phishing, ads/trackers, crypto-mining, adult, gambling, social; category on/off; custom allow/block rules; 6-hourly automatic refresh</li>
+        <li>HTTPS web dashboard: records, policies, threat log, analytics, users &amp; roles, settings</li>
+        <li><code>dnsctl</code> command-line tool</li>
+        <li><code>install.sh</code> and <code>measure.sh</code> shell scripts, systemd services/timers, automated tests</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3 style="margin-top:0">Out of scope — we will NOT build</h3>
+      <ul>
+        <li>A public, Internet-facing DNS service (open-resolver / DDoS risk)</li>
+        <li>A secondary (slave) DNS server or zone transfers</li>
+        <li>DNS-over-TLS / DNS-over-HTTPS</li>
+        <li>A trained machine-learning model (only a rule-based risk score)</li>
+        <li>DHCP, mail server, web proxy or content filtering of pages</li>
+        <li>High availability, load balancing or multi-site deployment</li>
+        <li>Registering a real public domain</li>
+      </ul>
+      <h3>Assumptions &amp; constraints</h3>
+      <ul>
+        <li>Each member has a laptop with VirtualBox; the VM gets 2 vCPU, 2–4 GB RAM</li>
+        <li>Internet access (NAT) available for packages and threat feeds</li>
+        <li>Lab clients are PCs/VMs on 192.168.56.0/24</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section>
+  <h2><span class="num">3</span>OS Concepts Involved</h2>
+  <table>
+    <thead><tr><th style="width:20%">OS concept</th><th>Where and how we use it</th><th style="width:22%">Example</th></tr></thead>
+    <tr><td><b>File systems &amp; access permissions</b></td><td>Configuration in <code>/etc/bind</code>, zone files in <code>/var/lib/bind</code>, keys in <code>/var/lib/bind/keys</code>. Ownership by user/group <code>bind</code> and service user <code>sentinel</code>; private data mode 0700, secrets 0600. Files are replaced <b>atomically</b> (write temp → check → rename) so BIND never reads a half-written zone.</td><td><code>chown root:bind</code>, <code>chmod 0640</code>, <code>rename()</code></td></tr>
+    <tr><td><b>Mandatory access control</b></td><td>AppArmor confines <code>named</code> to the directories it needs; we extend its local profile for our zone and log paths.</td><td><code>/etc/apparmor.d/local/usr.sbin.named</code></td></tr>
+    <tr><td><b>Process management</b></td><td><code>named</code>, the dashboard (waitress) and nginx run as <b>systemd services</b> with dependencies and automatic restart. BIND is reloaded through its control channel without stopping the process. Services run as unprivileged users (least privilege).</td><td><code>systemctl</code>, <code>rndc reload</code>, <code>journalctl -u named</code></td></tr>
+    <tr><td><b>Scheduling &amp; automation</b></td><td>A <b>systemd timer</b> downloads threat feeds every 6 hours; a background thread enforces log retention; shell scripts automate install and tests.</td><td><code>sentinel-feeds.timer</code></td></tr>
+    <tr><td><b>Network &amp; resource sharing</b></td><td>Client–server model over UDP/TCP port 53; recursive resolution, caching and forwarders; VirtualBox <b>NAT + host-only</b> adapters; a shared folder between Windows host and Linux guest.</td><td><code>dig</code>, <code>ss -lunp</code>, <code>ip addr</code></td></tr>
+    <tr><td><b>Security &amp; user authentication</b></td><td>DNSSEC public-key signatures; recursion ACL; response rate limiting; dashboard users with scrypt-hashed passwords, admin/viewer roles, login rate limits, sessions, HTTPS (TLS) and an audit trail.</td><td><code>allow-recursion</code>, <code>rate-limit</code>, roles</td></tr>
+    <tr><td><b>Inter-process communication</b></td><td>The management tool talks to BIND through the <code>rndc</code> control channel; BIND exposes statistics over a local HTTP channel; nginx forwards requests to the app.</td><td><code>rndc</code>, statistics channel</td></tr>
+    <tr><td><b>Logging &amp; monitoring</b></td><td>BIND query log ingested into the dashboard; statistics for cache hits and latency; system logs in the journal; log rotation.</td><td><code>/var/log/named/queries.log</code></td></tr>
+    <tr><td><b>Virtualization</b></td><td>The server is a guest OS in VirtualBox with virtual CPUs, memory and NICs — isolated from the host and easy to snapshot and rebuild.</td><td>VirtualBox host-only network</td></tr>
+  </table>
+
+<!-- ================= 4 ================= -->
+  <h2><span class="num">4</span>Proposed System Design</h2>
+  <svg viewBox="0 0 700 330" width="92%" style="display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" font-size="12">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#000"/></marker></defs>
+    <rect x="180" y="10" width="510" height="310" fill="none" stroke="#000" stroke-dasharray="6 4"/>
+    <text x="190" y="28" font-weight="700">Ubuntu 24.04 VM (VirtualBox) · 192.168.56.10</text>
+    <rect x="10" y="60" width="140" height="56" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="80" y="84" text-anchor="middle" font-weight="700">Lab clients</text>
+    <text x="80" y="102" text-anchor="middle">PCs, VMs (DNS queries)</text>
+    <rect x="10" y="200" width="140" height="56" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="80" y="224" text-anchor="middle" font-weight="700">Admin</text>
+    <text x="80" y="242" text-anchor="middle">Browser / terminal</text>
+    <rect x="230" y="50" width="200" height="80" fill="#e6e6e6" stroke="#000" stroke-width="2"/>
+    <text x="330" y="74" text-anchor="middle" font-weight="700">BIND 9 (named)</text>
+    <text x="330" y="92" text-anchor="middle">lab.local zones · DNSSEC</text>
+    <text x="330" y="108" text-anchor="middle">cache · RPZ firewall · ACL</text>
+    <rect x="520" y="50" width="155" height="56" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="597" y="74" text-anchor="middle" font-weight="700">Internet DNS</text>
+    <text x="597" y="92" text-anchor="middle">root / forwarders</text>
+    <rect x="230" y="200" width="200" height="80" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="330" y="222" text-anchor="middle" font-weight="700">nginx (HTTPS) →</text>
+    <text x="330" y="240" text-anchor="middle" font-weight="700">Sentinel dashboard / dnsctl</text>
+    <text x="330" y="258" text-anchor="middle">validate · check · apply</text>
+    <rect x="520" y="200" width="155" height="56" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="597" y="224" text-anchor="middle" font-weight="700">SQLite</text>
+    <text x="597" y="242" text-anchor="middle">records, rules, logs</text>
+    <rect x="520" y="140" width="155" height="40" fill="#fff" stroke="#000" stroke-dasharray="3 3"/>
+    <text x="597" y="164" text-anchor="middle">Threat feeds (6-hourly)</text>
+    <line x1="150" y1="88" x2="228" y2="88" stroke="#000" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="189" y="80" text-anchor="middle" font-size="10">UDP/TCP 53</text>
+    <line x1="430" y1="78" x2="518" y2="78" stroke="#000" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="474" y="70" text-anchor="middle" font-size="10">recursion</text>
+    <line x1="150" y1="228" x2="228" y2="228" stroke="#000" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="189" y="220" text-anchor="middle" font-size="10">HTTPS / SSH</text>
+    <line x1="430" y1="228" x2="518" y2="228" stroke="#000" stroke-width="1.5" marker-end="url(#a)"/>
+    <line x1="597" y1="182" x2="597" y2="198" stroke="#000" stroke-width="1.2" marker-end="url(#a)"/>
+    <line x1="300" y1="198" x2="300" y2="132" stroke="#000" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="246" y="170" font-size="10">zone files + rndc</text>
+    <line x1="360" y1="132" x2="360" y2="198" stroke="#000" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+    <text x="366" y="170" font-size="10">query log</text>
+  </svg>
+  <p class="muted" style="text-align:center;margin:2px 0 0">Figure 1 — Architecture of Sentinel DNS</p>
+</section>
+
+<section>
+  <h3>Components</h3>
+  <table>
+    <thead><tr><th style="width:22%">Component</th><th>Role</th></tr></thead>
+    <tr><td><b>BIND 9 (named)</b></td><td>Answers every DNS query: authoritative for <code>lab.local</code> and the reverse zone, recursive with cache for Internet names, applies the RPZ firewall, signs and validates with DNSSEC.</td></tr>
+    <tr><td><b>Response Policy Zones</b></td><td>Two policy zones: <code>rpz.local</code> (admin rules, checked first) and <code>rpz-feeds.local</code> (downloaded threat lists). A match returns NXDOMAIN instead of the real address.</td></tr>
+    <tr><td><b>Sentinel core</b> (Python)</td><td>Keeps zones, rules and history in SQLite; generates BIND's configuration, zone and policy files; checks them; swaps them in atomically; reloads BIND with <code>rndc</code>.</td></tr>
+    <tr><td><b>Web dashboard</b> (Flask + nginx)</td><td>HTTPS front end: Dashboard, Domains, Policies, Threats, Analytics, Query Tester, Users, Settings.</td></tr>
+    <tr><td><b><code>dnsctl</code></b></td><td>Terminal front end using the same core: <code>status</code>, <code>record add</code>, <code>block add</code>, <code>logs</code>, <code>sync</code>, <code>check</code>.</td></tr>
+    <tr><td><b>Feed updater</b></td><td>systemd timer + service that downloads and parses public threat lists every 6 hours.</td></tr>
+    <tr><td><b>Log ingester</b></td><td>Reads BIND's query log and statistics into the database for the threat log and charts.</td></tr>
+  </table>
+
+  <h3>Workflow 1 — answering a query</h3>
+  <ol>
+    <li>A lab client asks <code>192.168.56.10</code> for a name (UDP/TCP 53).</li>
+    <li>BIND checks the client against the ACL; outsiders get <b>REFUSED</b>.</li>
+    <li>The name is checked against the policy zones; a match returns <b>NXDOMAIN</b> and is logged as a threat.</li>
+    <li>If the name is in <code>lab.local</code>, BIND answers from its signed zone.</li>
+    <li>Otherwise it answers from cache, or resolves recursively, validates DNSSEC and caches the answer.</li>
+  </ol>
+  <h3>Workflow 2 — an admin change (safe change pipeline)</h3>
+  <ol>
+    <li>Admin adds/edits a record or rule in the dashboard or with <code>dnsctl</code>.</li>
+    <li>Input is validated (name syntax, IP format, CNAME conflicts, control characters).</li>
+    <li>The new zone file is generated with a higher SOA serial and checked by <code>named-checkzone</code> / <code>named-checkconf</code>.</li>
+    <li>Only if the check passes is the file swapped in atomically and BIND reloaded with <code>rndc</code>; otherwise the old zone keeps serving and the admin sees the error.</li>
+    <li>The action is written to the audit log.</li>
+  </ol>
+  <h3>Workflow 3 — threat-feed update</h3>
+  <ol>
+    <li>The systemd timer starts the feed service every 6 hours (and on demand via “Sync Feeds”).</li>
+    <li>Feeds are downloaded, parsed and de-duplicated; enabled categories are written to <code>rpz-feeds.local</code>.</li>
+    <li>The zone is checked and reloaded; a failed download keeps the previous list.</li>
+  </ol>
+
+<!-- ================= 5 ================= -->
+  <h2><span class="num">5</span>Tools &amp; Technologies</h2>
+  <table>
+    <thead><tr><th style="width:22%">Tool</th><th style="width:22%">Purpose</th><th>Why we picked it</th></tr></thead>
+    <tr><td>Ubuntu Server 24.04 LTS</td><td>Server operating system</td><td>Long-term support, BIND packaged and well documented, systemd and AppArmor built in</td></tr>
+    <tr><td>VirtualBox 7</td><td>Virtualization</td><td>Free, runs on our Windows laptops, host-only network isolates the lab</td></tr>
+    <tr><td>BIND 9.18</td><td>DNS server</td><td>Reference DNS implementation with zones, DNSSEC signing, RPZ, ACLs and rate limiting in one package</td></tr>
+    <tr><td>bind9-utils, dig, dnsperf</td><td>Checking &amp; testing</td><td><code>named-checkzone</code>, <code>named-checkconf</code>, <code>rndc</code>, query and load testing</td></tr>
+    <tr><td>Python 3.12, Flask, SQLite</td><td>Dashboard, <code>dnsctl</code>, data</td><td>Simple, small footprint, no separate database server needed on a small VM</td></tr>
+    <tr><td>nginx + OpenSSL</td><td>HTTPS reverse proxy</td><td>Encrypts admin logins on the LAN; standard and lightweight</td></tr>
+    <tr><td>systemd, journalctl, AppArmor</td><td>Services, timers, logs, confinement</td><td>Standard Linux process management and security</td></tr>
+    <tr><td>Bash</td><td>Install and test automation</td><td>Repeatable one-command setup and measurement</td></tr>
+    <tr><td>pytest, Git / GitHub</td><td>Testing, version control</td><td>Automated checks, shared code and history for the team</td></tr>
+  </table>
+  <h3>Why BIND? (alternatives considered)</h3>
+  <table>
+    <thead><tr><th style="width:18%">Option</th><th>Authoritative zones</th><th>DNSSEC signing</th><th>RPZ firewall</th><th style="width:30%">Decision</th></tr></thead>
+    <tr><td><b>BIND 9</b></td><td>Yes</td><td>Yes (automatic)</td><td>Yes</td><td><b>Chosen</b> — everything in one server, course-listed</td></tr>
+    <tr><td>dnsmasq</td><td>Basic</td><td>No (validation only)</td><td>No</td><td>Too limited for DNSSEC and firewall</td></tr>
+    <tr><td>Unbound</td><td>Minimal</td><td>No</td><td>Yes</td><td>Resolver only — no real authoritative zones</td></tr>
+    <tr><td>PowerDNS</td><td>Yes</td><td>Yes</td><td>Recursor only</td><td>Two separate servers — more complex</td></tr>
+  </table>
+</section>
+
+<!-- ================= 6 ================= -->
+<section>
+  <h2><span class="num">6</span>Implementation Plan</h2>
+  <table>
+    <thead><tr><th style="width:4%">#</th><th style="width:17%">Phase</th><th>Main tasks</th><th style="width:20%">Output</th></tr></thead>
+    <tr><td>1</td><td><b>Setup</b></td><td>Create the VM (2 vCPU, 2–4 GB RAM); NAT adapter for Internet + host-only adapter; static IP 192.168.56.10; install <code>bind9</code>, <code>bind9-utils</code>, <code>dnsperf</code>, <code>nginx</code>, Python</td><td>Reachable, updated VM</td></tr>
+    <tr><td>2</td><td><b>Basic DNS</b></td><td><code>named.conf.options</code> (forwarders, ACL, recursion), <code>named.conf.local</code> (zones); write <code>lab.local</code> and reverse zone with SOA, NS, A, AAAA, CNAME, MX, TXT, PTR; check with <code>named-checkconf -z</code></td><td>Lab names resolve from clients</td></tr>
+    <tr><td>3</td><td><b>DNSSEC &amp; hardening</b></td><td><code>dnssec-policy</code> with KSK/ZSK, inline signing, export DS; enable validation; <code>allow-recursion</code> = lab only; <code>rate-limit</code>; file ownership/modes; AppArmor local profile</td><td>Signed zone, closed resolver</td></tr>
+    <tr><td>4</td><td><b>DNS firewall</b></td><td>Two <code>response-policy</code> zones; feed downloader and parser; categories; allow/block rules; systemd service + 6-hour timer</td><td>Real threat lists blocked</td></tr>
+    <tr><td>5</td><td><b>Management</b></td><td>SQLite schema; zone/RPZ generator; check → atomic swap → <code>rndc</code> pipeline; dashboard pages; <code>dnsctl</code>; users, roles, sessions, audit log; nginx HTTPS</td><td>Safe changes without editing files</td></tr>
+    <tr><td>6</td><td><b>Automation</b></td><td><code>install.sh</code>: packages, network, users, directories, BIND wiring, services, certificate (idempotent, with <code>--dry-run</code>); <code>measure.sh</code>: full test plan → results file</td><td>One-command deploy and test</td></tr>
+    <tr><td>7</td><td><b>Testing</b></td><td>Unit and API tests (pytest), live BIND tests, test plan below, latency and load tests from the VM and from a Windows client</td><td>Results tables</td></tr>
+    <tr><td>8</td><td><b>Report &amp; demo</b></td><td>Final report, slides, demo script and rehearsal</td><td>Final submission</td></tr>
+  </table>
+
+  <h3>Shell scripts and services we will write</h3>
+  <table>
+    <thead><tr><th style="width:26%">File</th><th>What it does</th></tr></thead>
+    <tr><td><code>scripts/install.sh</code></td><td>Installs and configures the whole system on a fresh Ubuntu VM; safe to run again; logs to <code>/var/log/sentinel-install.log</code></td></tr>
+    <tr><td><code>scripts/measure.sh</code></td><td>Runs every check in the test plan plus a dnsperf load test and writes a Markdown results file</td></tr>
+    <tr><td><code>scripts/vm/setup-vm.ps1</code></td><td>Configures the VirtualBox VM (CPUs, host-only adapter, shared folder) from Windows</td></tr>
+    <tr><td><code>sentinel.service</code></td><td>Runs the dashboard as an unprivileged user behind nginx</td></tr>
+    <tr><td><code>sentinel-feeds.service / .timer</code></td><td>Downloads threat feeds every 6 hours</td></tr>
+  </table>
+
+  <h3>Test plan</h3>
+  <table>
+    <thead><tr><th style="width:4%">#</th><th style="width:24%">Test</th><th style="width:40%">Command</th><th>Expected result</th></tr></thead>
+    <tr><td>T1</td><td>A / AAAA record</td><td><code>dig @192.168.56.10 www.lab.local A</code> / <code>AAAA</code></td><td>192.168.56.20 / fd00:56::20</td></tr>
+    <tr><td>T2</td><td>CNAME, MX, TXT</td><td><code>dig portal.lab.local</code>, <code>dig lab.local MX</code></td><td>Alias to www; MX 10 mail.lab.local</td></tr>
+    <tr><td>T3</td><td>Reverse lookup</td><td><code>dig -x 192.168.56.20</code></td><td>www.lab.local</td></tr>
+    <tr><td>T4</td><td>DNSSEC signatures</td><td><code>dig +dnssec www.lab.local</code>, <code>dig lab.local DNSKEY</code></td><td>RRSIG present; flags 257 (KSK) and 256 (ZSK)</td></tr>
+    <tr><td>T5</td><td>DNSSEC validation</td><td><code>dig +dnssec isc.org</code>, <code>dig dnssec-failed.org</code></td><td><code>ad</code> flag; SERVFAIL</td></tr>
+    <tr><td>T6</td><td>Firewall block</td><td><code>dig amiprotected.it</code> (listed test domain)</td><td>NXDOMAIN, entry in threat log</td></tr>
+    <tr><td>T7</td><td>Allowed name</td><td><code>dig example.org</code></td><td>Normal answer</td></tr>
+    <tr><td>T8</td><td>Closed resolver</td><td>Query from an address outside the ACL</td><td>REFUSED</td></tr>
+    <tr><td>T9</td><td>Safe change</td><td>Add a record in the dashboard; add an invalid CNAME</td><td>Resolves within seconds; invalid change rejected</td></tr>
+    <tr><td>T10</td><td>Cache benefit</td><td>Same <code>dig</code> twice, compare “Query time”</td><td>Second answer ≈ 0–1 ms</td></tr>
+    <tr><td>T11</td><td>Load</td><td><code>dnsperf -l 10</code></td><td>Queries/second and loss recorded</td></tr>
+    <tr><td>T12</td><td>Dashboard security</td><td>HTTP request, wrong passwords, viewer edits</td><td>Redirect to HTTPS, lockout, 403</td></tr>
+  </table>
+</section>
+
+<!-- ================= 7 ================= -->
+<section>
+  <h2><span class="num">7</span>Work Distribution</h2>
+  <p>Each member owns one layer of the system end to end — builds it, tests it, writes its report section and presents it. Each share is about 25% of the work.</p>
+  <table>
+    <thead><tr><th style="width:17%">Member · ID</th><th>Technical responsibility</th><th style="width:22%">Scripts / testing</th><th style="width:19%">Deliverable</th></tr></thead>
+    <tr><td><b>Sayed Ifti Ahmed</b><br>241-15-227<br><span class="muted">Team lead</span></td><td>VM &amp; network setup, BIND configuration, <code>lab.local</code> forward + reverse zones (A, AAAA, CNAME, MX, PTR), forwarders, integration of all parts</td><td><code>install.sh</code> (one-command setup), record tests T1–T3</td><td>Working DNS server, installer</td></tr>
+    <tr><td><b>All Mackrajul</b><br>241-15-691</td><td>DNSSEC (KSK/ZSK, signing, DS record, validation), recursion ACL, rate limiting, file permissions, AppArmor, HTTPS</td><td>DNSSEC &amp; security tests T4, T5, T8, T12</td><td>Signed zone, security checklist</td></tr>
+    <tr><td><b>MD. KAIKOBAD</b><br>232-15-654</td><td>DNS firewall: RPZ zones, real threat feeds, categories, allow/block rules, 6-hourly systemd timer</td><td>Feed script, firewall tests T6, T7</td><td>Blocking with real lists</td></tr>
+    <tr><td><b>Rituparna Banik</b><br>241-15-726</td><td>Web dashboard and <code>dnsctl</code> CLI: records, policies, threat log, analytics, users &amp; roles</td><td><code>measure.sh</code>, tests T9–T11, latency / cache / load measurements</td><td>Dashboard, CLI, results tables</td></tr>
+  </table>
+
+  <h3>Report, presentation and demo split</h3>
+  <table>
+    <thead><tr><th style="width:17%">Member</th><th>Report sections</th><th style="width:30%">Proposal slides (≈1.5 min each)</th><th style="width:20%">Final demo</th></tr></thead>
+    <tr><td>Sayed Ifti Ahmed</td><td>Introduction, problem, scope, system design</td><td>Title · Problem &amp; objective · Scope</td><td>Zones &amp; records</td></tr>
+    <tr><td>All Mackrajul</td><td>OS concepts, security, ethics &amp; privacy</td><td>OS concepts · System design</td><td>DNSSEC &amp; server protection</td></tr>
+    <tr><td>MD. KAIKOBAD</td><td>Tools, firewall method, challenges</td><td>Tools · Implementation plan · Work distribution</td><td>Website blocking</td></tr>
+    <tr><td>Rituparna Banik</td><td>Results, conclusion, report editing</td><td>Timeline · Challenges · Demo plan &amp; references</td><td>Dashboard &amp; results</td></tr>
+  </table>
+  <h3>How we work as a team</h3>
+  <ul>
+    <li><b>Weekly meeting</b> (after the lab class): each member shows progress, blockers are assigned.</li>
+    <li><b>One shared Git repository</b>; every change is reviewed by one other member before it is merged.</li>
+    <li><b>Integration owner:</b> the team lead merges all parts on the VM every Friday.</li>
+    <li><b>Q&amp;A readiness:</b> every member can explain the architecture (Figure 1), the change pipeline and why BIND was chosen.</li>
+  </ul>
+
+<!-- ================= 8 ================= -->
+  <h2><span class="num">8</span>Timeline (7 weeks, 5 November – 23 December 2026)</h2>
+  <table class="gantt keep">
+    <thead><tr><th style="width:34%">Work package</th><th>W1<br>5 Nov</th><th>W2<br>12 Nov</th><th>W3<br>19 Nov</th><th>W4<br>26 Nov</th><th>W5<br>3 Dec</th><th>W6<br>10 Dec</th><th>W7<br>17 Dec</th></tr></thead>
+    <tr><td class="task">Planning &amp; proposal</td><td class="on"></td><td class="mk">P</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="task">VM, BIND, zones (Ifti)</td><td class="on"></td><td class="on"></td><td class="on"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="task">DNSSEC &amp; hardening (Mackrajul)</td><td></td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td><td></td><td></td></tr>
+    <tr><td class="task">DNS firewall &amp; feeds (Kaikobad)</td><td></td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td><td></td><td></td></tr>
+    <tr><td class="task">Dashboard &amp; dnsctl (Rituparna)</td><td></td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td><td></td><td></td></tr>
+    <tr><td class="task">Integration &amp; install.sh</td><td></td><td></td><td></td><td class="on"></td><td class="on"></td><td class="on"></td><td></td></tr>
+    <tr><td class="task">Testing &amp; measurement</td><td></td><td></td><td class="on"></td><td></td><td></td><td class="on"></td><td></td></tr>
+    <tr><td class="task">Report, slides, final demo</td><td></td><td></td><td></td><td></td><td></td><td class="on"></td><td class="mk">F</td></tr>
+  </table>
+  <p class="muted" style="margin:0">P = proposal presentation (12 Nov) · F = final demo &amp; submission</p>
+</section>
+
+<section>
+  <h3>Week-by-week tasks</h3>
+  <table>
+    <thead><tr><th style="width:11%">Week</th><th style="width:20%">Milestone</th><th>Sayed Ifti Ahmed</th><th>All Mackrajul</th><th>MD. KAIKOBAD</th><th>Rituparna Banik</th></tr></thead>
+    <tr><td><b>W1</b><br>5–11 Nov</td><td>Planning &amp; proposal slides</td><td>VM, network, static IP; slides: title, problem, scope</td><td>Study DNSSEC; slides: OS concepts, design</td><td>Select threat feeds; slides: tools, plan, work split</td><td>Dashboard mock-up; slides: timeline, challenges, demo</td></tr>
+    <tr><td><b>W2</b><br>12–18 Nov</td><td><b>Proposal presentation (12 Nov)</b>; basic DNS</td><td>BIND, both zones, all record types</td><td>Recursion ACL, forwarders</td><td>RPZ zone set up</td><td>Database &amp; dashboard skeleton</td></tr>
+    <tr><td><b>W3</b><br>19–25 Nov</td><td>DNSSEC &amp; feeds</td><td>Record tests, reverse zone</td><td>Keys, signing, DS record</td><td>Feed download &amp; parsing</td><td>Records page</td></tr>
+    <tr><td><b>W4</b><br>26 Nov–2 Dec</td><td>Firewall &amp; management</td><td><code>install.sh</code> draft</td><td>Validation, rate limiting</td><td>Categories, allow/block rules</td><td>Policies page, <code>dnsctl</code></td></tr>
+    <tr><td><b>W5</b><br>3–9 Dec</td><td>All features complete</td><td>Integrate all parts on the VM</td><td>Permissions, AppArmor, HTTPS, login security</td><td>systemd timer, threat log</td><td>Users &amp; roles, analytics</td></tr>
+    <tr><td><b>W6</b><br>10–16 Dec</td><td>Testing &amp; measurement</td><td>Full install test, bug fixes</td><td>Security tests</td><td>Firewall tests</td><td><code>measure.sh</code>, measurements</td></tr>
+    <tr><td><b>W7</b><br>17–23 Dec</td><td><b>Final report, demo &amp; submission</b></td><td>Report sections; demo: records</td><td>Report sections; demo: DNSSEC</td><td>Report sections; demo: blocking</td><td>Report editing; demo: dashboard</td></tr>
+  </table>
+  <h3>Checkpoints</h3>
+  <ul>
+    <li><b>12 Nov</b> — proposal presented; slides uploaded to BLC as PDF by 11:59 PM.</li>
+    <li><b>End of W3</b> — every record type answers from a lab client; zone signed.</li>
+    <li><b>End of W5</b> — all features working together on the VM (<b>feature freeze</b>).</li>
+    <li><b>End of W6</b> — test plan T1–T12 passes; measurements recorded.</li>
+    <li><b>W7</b> — final demo and submission; each member presents their own part.</li>
+  </ul>
+
+<!-- ================= 9 ================= -->
+  <h2><span class="num">9</span>Expected Challenges &amp; Trade-offs</h2>
+  <h3>Conflicting constraints</h3>
+  <table>
+    <thead><tr><th style="width:24%">Trade-off</th><th>Our decision and why</th></tr></thead>
+    <tr><td><b>Security vs. usability</b></td><td>Recursion only for the lab ACL and an HTTPS-only dashboard with login limits — but a GUI and CLI so admins never edit raw files, and a viewer role for read-only access.</td></tr>
+    <tr><td><b>Blocking vs. false positives</b></td><td>Strong feeds catch more threats but can block real sites. We add category on/off switches, an allow list that overrides every feed and one-click unblock from the threat log.</td></tr>
+    <tr><td><b>Performance vs. resources</b></td><td>A 340,000-name blocklist and DNSSEC cost memory and CPU on a small VM. We rely on caching, keep the stack light (SQLite, no containers) and measure latency with and without the firewall.</td></tr>
+    <tr><td><b>Privacy vs. accountability</b></td><td>Query logs help find infected machines but reveal browsing. Logs are admin-only, kept for a limited time and client IPs can be anonymised; admin actions are always audited.</td></tr>
+    <tr><td><b>Availability vs. safety of changes</b></td><td>Every change is checked before it is applied, which adds a second of delay — but a bad change can never take the zone down.</td></tr>
+  </table>
+  <h3>Risks and mitigation</h3>
+  <table>
+    <thead><tr><th style="width:30%">Risk</th><th style="width:10%">Likelihood</th><th style="width:9%">Impact</th><th>Mitigation</th></tr></thead>
+    <tr><td>A wrong zone file stops DNS</td><td>Medium</td><td>High</td><td><code>named-checkzone</code> before apply, atomic swap, old zone kept</td></tr>
+    <tr><td>DNSSEC misconfiguration (expired signatures)</td><td>Medium</td><td>High</td><td>BIND's automatic <code>dnssec-policy</code>; validation test in <code>measure.sh</code></td></tr>
+    <tr><td>Feed download fails or is huge</td><td>Medium</td><td>Medium</td><td>Keep the previous list; timeouts; size check</td></tr>
+    <tr><td>Browsers use DNS-over-HTTPS and bypass the firewall</td><td>High</td><td>Medium</td><td>Documented limitation; disable “secure DNS” on lab clients</td></tr>
+    <tr><td>Slow laptops / VirtualBox performance</td><td>Medium</td><td>Medium</td><td>Small VM, close heavy apps, snapshots; demo fallback mode on Windows</td></tr>
+    <tr><td>Member unavailable during exams</td><td>Medium</td><td>Medium</td><td>Each part documented and reviewed by a second member; feature freeze at end of W5</td></tr>
+  </table>
+</section>
+
+<!-- ================= 10 ================= -->
+<section>
+  <h2><span class="num">10</span>Expected Outcome &amp; Demo Plan</h2>
+  <h3>Expected outcome</h3>
+  <ul>
+    <li>A working, DNSSEC-signed DNS server for the lab with a DNS firewall using real threat lists.</li>
+    <li>An HTTPS dashboard and a CLI that apply changes safely within seconds.</li>
+    <li>One-command installation and a repeatable test plan with recorded results.</li>
+    <li>A final report covering design, OS concepts, results and engineering trade-offs.</li>
+  </ul>
+  <h3>Final demo (about 10 minutes)</h3>
+  <table>
+    <thead><tr><th style="width:5%">#</th><th style="width:18%">Presenter</th><th>What we show</th><th style="width:28%">What the audience sees</th></tr></thead>
+    <tr><td>1</td><td>Sayed Ifti Ahmed</td><td><code>Resolve-DnsName</code> from Windows for A, AAAA, CNAME, MX, PTR; add a record in the dashboard and resolve it immediately; an invalid record is rejected</td><td>Correct answers; change live in seconds; safe rejection</td></tr>
+    <tr><td>2</td><td>All Mackrajul</td><td><code>dig +dnssec</code> on the lab zone; validation of <code>isc.org</code> vs. <code>dnssec-failed.org</code>; query from outside the ACL; HTTPS and login lockout</td><td>RRSIG, <code>ad</code> flag, SERVFAIL, REFUSED</td></tr>
+    <tr><td>3</td><td>MD. KAIKOBAD</td><td>A listed phishing test domain blocked; threat log entry; add and remove a custom block rule; switch a category off and on; feed sync</td><td>NXDOMAIN, logged threat, rule effect in ~5 s</td></tr>
+    <tr><td>4</td><td>Rituparna Banik</td><td>Dashboard tour: analytics, users/roles, audit trail, generated zone file; cached vs. uncached query time; results table from <code>measure.sh</code></td><td>Charts, roles, measured numbers</td></tr>
+  </table>
+
+<!-- ================= 11 ================= -->
+  <h2><span class="num">11</span>References</h2>
+  <ol style="font-size:9.3pt">
+    <li>Internet Systems Consortium, <i>BIND 9 Administrator Reference Manual</i>, bind9.readthedocs.io.</li>
+    <li>P. Mockapetris, <i>RFC 1034 — Domain Names: Concepts and Facilities</i>, IETF, 1987.</li>
+    <li>P. Mockapetris, <i>RFC 1035 — Domain Names: Implementation and Specification</i>, IETF, 1987.</li>
+    <li>R. Arends et al., <i>RFC 4033 / 4034 / 4035 — DNS Security Introduction and Requirements; Resource Records; Protocol Modifications</i>, IETF, 2005.</li>
+    <li>P. Vixie, V. Schryver, <i>DNS Response Policy Zones (RPZ)</i>, IETF Internet-Draft draft-vixie-dnsop-dns-rpz.</li>
+    <li>Canonical, <i>Ubuntu Server Guide — Domain Name Service (DNS)</i>, ubuntu.com/server/docs.</li>
+    <li>C. Liu, P. Albitz, <i>DNS and BIND</i>, 5th ed., O'Reilly Media, 2006.</li>
+    <li>A. Silberschatz, P. B. Galvin, G. Gagne, <i>Operating System Concepts</i>, 10th ed., Wiley, 2018.</li>
+    <li>systemd project, <i>systemd.service</i> and <i>systemd.timer</i> manual pages, freedesktop.org.</li>
+    <li>Oracle, <i>VirtualBox User Manual — Virtual Networking</i>, virtualbox.org.</li>
+    <li>Threat lists: StevenBlack/hosts; Phishing Army; URLhaus (abuse.ch); EasyPrivacy; NoCoin.</li>
+  </ol>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+-r requirements.txt
+pytest==9.1.1
+pytest-cov==7.1.0
+playwright==1.64.0  # browser E2E tests; uses the installed Edge/Chrome
+# Their dependencies, pinned to the tested versions
+coverage==7.16.2
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.7.0
+pygments==2.21.0
+greenlet==3.5.6
+pyee==14.0.0
+typing-extensions==4.16.0

@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Runtime data: SQLite database and generated secret key
+instance/
+*.db
+*.db-wal
+*.db-shm
+
+# Temporary asset download folder
+.vendor-tmp/
+
+# Local staging for later weeks (not published)
+.release/
