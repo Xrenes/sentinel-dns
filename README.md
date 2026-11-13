@@ -7,7 +7,7 @@ A DNS server for a lab network with a DNS firewall, an ML detector and a web das
 SQLite, and every change is written to BIND's configuration, zone files and response-policy zone (RPZ),
 checked with `named-checkzone` / `named-checkconf` and applied with `rndc`.
 
-**Live UI demo:** see [`demo-site/`](demo-site/) (GitHub Pages link: _to be added_) — a static,
+**Live UI demo: https://xrenes.github.io/sentinel-dns/** (source: [`demo-site/`](demo-site/)) — a static,
 clickable copy of the dashboard with sample data.
 **Proposal:** [`docs/proposal/`](docs/proposal/)
 
